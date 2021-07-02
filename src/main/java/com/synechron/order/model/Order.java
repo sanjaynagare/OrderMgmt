@@ -1,4 +1,4 @@
-package com.synechron.model;
+package com.synechron.order.model;
 
 
 import javax.persistence.Column;
@@ -14,17 +14,17 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id")
-	private int orderId;
+	private Long orderId;
 	@Column(name = "order_name")
 	private String orderName;
 	@Column(name = "order_description")
 	private String OrderDescription;
 	@Column(name = "amount")
 	private double amount;
-	public int getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	public String getOrderName() {

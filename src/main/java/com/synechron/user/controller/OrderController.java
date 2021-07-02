@@ -1,4 +1,4 @@
-package com.synechron.resource;
+package com.synechron.user.controller;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.synechron.model.Order;
-import com.synechron.service.OrderService;
+import com.synechron.order.model.Order;
+import com.synechron.order.service.OrderService;
 
 @RestController
 @RequestMapping(value = "/orders", produces = { MediaType.APPLICATION_JSON_VALUE })
-public class OrderResource {
-	Logger logger = LoggerFactory.getLogger(OrderResource.class);
+public class OrderController {
+	Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@Autowired
 	private OrderService orderService;
@@ -38,18 +38,18 @@ public class OrderResource {
 		
 	}
 
-	@GetMapping("/orders/{id}")
-	Order getOrderById(@PathVariable Long orderId) {
+	@GetMapping("/orders/{orderId}")
+	Order getOrderById(@PathVariable("orderId") Long orderId) {
 		return orderService.findById(orderId);
 	}
 
-	@PutMapping("/orders/{id}")
-	Order updateOrder(@RequestBody Order order, @PathVariable Long orderId) {
+	@PutMapping("/orders/{orderId}")
+	Order updateOrder(@RequestBody Order order, @PathVariable("orderId") Long orderId) {
 		return orderService.findById(orderId);
 	}
 
-	@DeleteMapping("/orders/{id}")
-	void deleteOrder(@PathVariable Long orderId) {
+	@DeleteMapping("/orders/{orderId}")
+	void deleteOrder(@PathVariable("orderId") Long orderId) {
 		orderService.delete(orderId);
 	}
 

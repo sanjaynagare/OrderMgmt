@@ -1,4 +1,4 @@
-package com.synechron.service;
+package com.synechron.order.service;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.synechron.model.Order;
-import com.synechron.repository.OrderRepository;
+import com.synechron.order.dao.OrderRepository;
+import com.synechron.order.model.Order;
 
 @Service
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 	Logger logger = LoggerFactory.getLogger(OrderService.class);
 
 	@Autowired
