@@ -1,7 +1,6 @@
 package com.synechron.order.model;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,35 +8,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Order_new")
+@Table(name = "order1")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
-	private Long orderId;
-	@Column(name = "order_name")
-	private String orderName;
-	@Column(name = "order_description")
-	private String OrderDescription;
-	@Column(name = "amount")
+	private Long id;
+	private String oderName;
+	private String description;
 	private double amount;
-	public Long getOrderId() {
-		return orderId;
+	public Long getId() {
+		return id;
 	}
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getOrderName() {
-		return orderName;
+		return oderName;
 	}
-	public void setOrderName(String orderName) {
-		this.orderName = orderName;
+	public void setOrderName(String oderName) {
+		this.oderName = oderName;
 	}
-	public String getOrderDescription() {
-		return OrderDescription;
+	public String getDescription() {
+		return description;
 	}
-	public void setOrderDescription(String orderDescription) {
-		OrderDescription = orderDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public double getAmount() {
 		return amount;
@@ -45,10 +40,5 @@ public class Order {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", orderName=" + orderName + ", OrderDescription=" + OrderDescription
-				+ ", amount=" + amount + "]";
-	}
-
+	
 }

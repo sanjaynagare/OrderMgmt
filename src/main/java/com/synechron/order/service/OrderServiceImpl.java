@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 		return orderReposiotry.findAll();
 	}
 
-	public Order findById(Long id) {
+	public Order get(Long id) {
 		return orderReposiotry.findById(id).get();
 	}
 
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 		else {
 			updateOrder.setAmount(order.getAmount());
 			updateOrder.setOrderName(order.getOrderName());
-			updateOrder.setOrderDescription(order.getOrderDescription());
+			updateOrder.setDescription(order.getDescription());
 			orderReposiotry.saveAndFlush(updateOrder);
 		}
 		return updateOrder;

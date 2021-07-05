@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Manager</title>
+</head>
+<body>
+<div align="center">	
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Order Manager</h1>
+	<a href="new">Create New Order</a>
+	
+	<br/><br/>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Order ID</th>
+				<th>Order Name</th>
+				<th>Order Description</th>
+				<th>Amount</th>
+				<th sec:authorize="hasRole('ADMIN')">Actions</th>				
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="order : ${listOrders}">
+				<td th:text="${order.id}">Order ID</td>
+				<td th:text="${order.orderName}">Order Name</td>
+				<td th:text="${order.description}">Order Description</td>
+				<td th:text="${order.amount}">Amount</td>
+				<td sec:authorize="hasRole('ADMIN')">
+					<a th:href="@{'/edit/' + ${order.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/delete/' + ${order.id}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
