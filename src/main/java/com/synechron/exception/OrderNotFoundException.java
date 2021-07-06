@@ -1,6 +1,11 @@
 package com.synechron.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class OrderNotFoundException extends RuntimeException {
+	
+	Logger logger = LoggerFactory.getLogger(OrderNotFoundException.class);
 
 	/**
 	 * 
