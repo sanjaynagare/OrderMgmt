@@ -12,44 +12,46 @@ import com.synechron.order.model.Order;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	Logger logger = LoggerFactory.getLogger(OrderService.class);
+	Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 	@Autowired
-	private OrderRepository orderReposiotry;
+	private OrderRepository orderRepository;
 
 	public Order save(Order order) {
 		Order newOrder = order;
-		return orderReposiotry.saveAndFlush(newOrder);
+		return orderRepository.saveAndFlush(newOrder);
 	}
 	
 	public List<Order> findAll() {
-		return orderReposiotry.findAll();
+		return orderRepository.findAll();
 	}
 
 	public Order get(Long id) {
-		return orderReposiotry.findById(id).get();
+		return orderRepository.findById(id).get();
 	}
 
-	public Order update(Order order, Long id) {
-		Order updateOrder = orderReposiotry.findById(id).get();
-		if (updateOrder == null)
-			logger.info("OrderService::Order Not Found");//throw new OrderException();
+	public Order update(Order order, Long orderId) {
+		Order updateOrder = orderRepository.findById(orderId).get();
+		if (updateOrder == null) {
+			logger.info("OrderService::Order Not Found");
+		}
 		else {
 			updateOrder.setAmount(order.getAmount());
 			updateOrder.setOrderName(order.getOrderName());
 			updateOrder.setDescription(order.getDescription());
-			orderReposiotry.saveAndFlush(updateOrder);
+			orderRepository.saveAndFlush(updateOrder);
 		}
 		return updateOrder;
 
 	}
 
-	public Order delete(Long id) {
-		Order deleteOrder = orderReposiotry.findById(id).get();
-		if (deleteOrder == null)
-			logger.info("OrderService::Order Not Found");//throw new OrderException();
+	public Order delete(Long orderId) {
+		Order deleteOrder = orderRepository.findById(orderId).get();
+		if (deleteOrder == null) {
+			logger.info("OrderService::Order Not Found");
+		}
 		else
-		orderReposiotry.delete(deleteOrder);
+		orderRepository.delete(deleteOrder);
 		return deleteOrder;
 	}
 

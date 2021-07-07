@@ -33,8 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/delete/**", "/edit/**").hasRole("ADMIN").antMatchers("/new/**")
-				.hasAnyRole("USER", "ADMIN").antMatchers("/", "/h2/**").hasAnyRole("USER", "ADMIN").and().formLogin()
-				.permitAll().and().logout().permitAll().and().exceptionHandling().accessDeniedPage("/unauthorize");
+		http.authorizeRequests()
+		.antMatchers("/delete/**", "/edit/**").hasRole("ADMIN")
+		.antMatchers("/new/**").hasAnyRole("USER", "ADMIN")
+		.antMatchers("/", "/h2/**").hasAnyRole("USER", "ADMIN")
+		.and().formLogin()
+		.permitAll()
+		.and().logout().permitAll()
+		.and().exceptionHandling().accessDeniedPage("/unauthorize");
 	}
 }

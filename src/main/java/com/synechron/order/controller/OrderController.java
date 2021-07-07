@@ -17,7 +17,7 @@ import com.synechron.order.model.Order;
 import com.synechron.order.service.OrderService;
 
 @Controller
-public class OrderController {
+public class OrderController{
 	Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@Autowired
@@ -25,6 +25,7 @@ public class OrderController {
 
 	@RequestMapping("/")
 	public String viewHomePage(Model model) {
+		logger.info("In OrderController::createOrSaveOrder()::");
 		List<Order> listOrders = orderService.findAll();
 		model.addAttribute("listOrders", listOrders);
 		
@@ -33,6 +34,7 @@ public class OrderController {
 	
 	@RequestMapping("/new")
 	public String showNewOrderForm(Model model) {
+		logger.info("In OrderController::showNewOrderForm()::");
 		Order order = new Order();
 		model.addAttribute("order1", order);
 		
@@ -41,6 +43,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveOrder(@ModelAttribute("order") Order order) {
+		logger.info("In OrderController::saveOrder()::"+order);
 		orderService.save(order);
 		
 		return "redirect:/";
@@ -49,8 +52,9 @@ public class OrderController {
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditOrderForm(@PathVariable(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView("edit_order");
-		
+		logger.info("In OrderController::showEditOrderForm()::");
 		Order order = orderService.get(id);
+		
 		mav.addObject("order1", order);
 		
 		return mav;
@@ -58,7 +62,8 @@ public class OrderController {
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteOrder(@PathVariable(name = "id") Long id) {
-		orderService.delete(id);
+		logger.info("In OrderController::deleteOrder()");
+		orderService.delete(10L);
 		
 		return "redirect:/";
 	}

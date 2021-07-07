@@ -13,9 +13,19 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String oderName;
+	private String orderName;
 	private String description;
 	private double amount;
+	
+	public Order()
+	{
+		
+	}
+	public Order(String orderName, String description, double amount) {
+		this.orderName = orderName;
+		this.description = description;
+		this.amount = amount;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -23,10 +33,10 @@ public class Order {
 		this.id = id;
 	}
 	public String getOrderName() {
-		return oderName;
+		return orderName;
 	}
 	public void setOrderName(String oderName) {
-		this.oderName = oderName;
+		this.orderName = oderName;
 	}
 	public String getDescription() {
 		return description;

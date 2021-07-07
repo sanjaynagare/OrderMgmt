@@ -1,22 +1,23 @@
 package com.synechron.exception;
 
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.synechron.config.WebSecurityConfig;
-
+@Controller
 @ControllerAdvice
 public class OrderNotFoundAdvice { 
   Logger logger = LoggerFactory.getLogger(OrderNotFoundAdvice.class);
-  @ResponseBody
-  @ExceptionHandler(OrderNotFoundException.class)
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  String orderNotFoundHandler(OrderNotFoundException ex) {
-    return ex.getMessage();
-  }
+  
+  @ExceptionHandler(NoSuchElementException.class)
+  public String orderNotFoundHandler(Model model) {
+	  	logger.info("OrderNotFoundAdvice::orderNotFoundHandler():Order Not FOund");
+	    model.addAttribute("errMsg","Requested Order Not found");
+	    return  "error";
+	  }
 }
