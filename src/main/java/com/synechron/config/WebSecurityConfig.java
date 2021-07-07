@@ -35,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/delete/**", "/edit/**").hasRole("ADMIN")
-		.antMatchers("/new/**").hasAnyRole("USER", "ADMIN")
 		.antMatchers("/", "/h2/**").hasAnyRole("USER", "ADMIN")
 		.and().formLogin()
 		.permitAll()
